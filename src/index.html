@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoptToClipBoard</title>
+
+    <style>
+        .tooltip {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .container {
+            background-color: darkgray;
+            border-radius: 20px;
+            font-size: larger;
+            width: 50%;
+            color: crimson;
+            padding: 25px;
+            margin-top: 200px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="container">
+            <div id="div-text">
+                "Welcome to my world"
+            </div>
+
+            <div class="tooltip">
+                <button type="button" onclick="handleCopy()" onmouseout="outFunc()">
+                    <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                    Copy
+                </button>
+            </div>
+        </div>
+    </center>
+
+    <script>
+
+        const text = document.getElementById("div-text").innerText;
+
+        const handleCopy = () => {
+            navigator.clipboard.writeText(text);
+
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copied";
+        }
+
+        function outFunc() {
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copy to clipboard";
+        }
+
+    </script>
+</body>
+
+</html>
